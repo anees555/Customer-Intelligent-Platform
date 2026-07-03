@@ -1,0 +1,31 @@
+# Environment
+.customerenv/
+customerenv/
+
+
+# Python
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data
+data/raw/
+
+# Models
+models/
+
+# MLflow
+mlruns/
+
+# Logs
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
