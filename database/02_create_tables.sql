@@ -1,3 +1,9 @@
+-- create product categories table(portuguese -> english translation)
+CREATE TABLE product_categories (
+    product_category_name VARCHAR(100) PRIMARY KEY,
+    product_category_name_english VARCHAR(100) NOT NULL
+);
+
 -- create customer table
 CREATE TABLE customers (
     customer_id VARCHAR(32) PRIMARY KEY,
@@ -7,26 +13,12 @@ CREATE TABLE customers (
     customer_state CHAR(2) NOT NULL
 );
 
--- create orders table
-CREATE TABLE orders (
-    order_id VARCHAR(32) PRIMARY KEY,
-    customer_id VARCHAR(32) NOT NULL,
-    order_status VARCHAR(20) NOT NULL,
-    order_purchase_timestamp TIMESTAMP NOT NULL,
-    order_approved_at TIMESTAMP,
-    order_delivered_carrier_date TIMESTAMP,
-    order_delivered_customer_date TIMESTAMP,
-    order_estimated_delivery_date TIMESTAMP NOT NULL,
-
-    CONSTRAINT fk_orders_customer
-        FOREIGN KEY (customer_id)
-        REFERENCES customers(customer_id)
-);
-
--- create product categories table(portuguese -> english translation)
-CREATE TABLE product_categories (
-    product_category_name VARCHAR(100) PRIMARY KEY,
-    category_name_english VARCHAR(100) NOT NULL
+-- create seller table
+CREATE TABLE sellers (
+    seller_id VARCHAR(32) PRIMARY KEY,
+    seller_zip_code_prefix INTEGER NOT NULL,
+    seller_city VARCHAR(100) NOT NULL,
+    seller_state CHAR(2) NOT NULL
 );
 
 -- create product table
@@ -45,6 +37,26 @@ CREATE TABLE products (
         FOREIGN KEY (product_category_name)
         REFERENCES product_categories(product_category_name)
 );
+
+-- create orders table
+CREATE TABLE orders (
+    order_id VARCHAR(32) PRIMARY KEY,
+    customer_id VARCHAR(32) NOT NULL,
+    order_status VARCHAR(20) NOT NULL,
+    order_purchase_timestamp TIMESTAMP NOT NULL,
+    order_approved_at TIMESTAMP,
+    order_delivered_carrier_date TIMESTAMP,
+    order_delivered_customer_date TIMESTAMP,
+    order_estimated_delivery_date TIMESTAMP NOT NULL,
+
+    CONSTRAINT fk_orders_customer
+        FOREIGN KEY (customer_id)
+        REFERENCES customers(customer_id)
+);
+
+
+
+
 
 -- create order_items table
 CREATE TABLE order_items (
@@ -72,13 +84,7 @@ CREATE TABLE order_items (
         REFERENCES sellers(seller_id)
 );
 
--- create seller table
-CREATE TABLE sellers (
-    seller_id VARCHAR(32) PRIMARY KEY,
-    seller_zip_code_prefix INTEGER NOT NULL,
-    seller_city VARCHAR(100) NOT NULL,
-    seller_state CHAR(2) NOT NULL
-);
+
 
 -- create order_payments table
 CREATE TABLE order_payments (
@@ -98,13 +104,16 @@ CREATE TABLE order_payments (
 
 -- create review table
 CREATE TABLE order_reviews (
-    review_id VARCHAR(32) PRIMARY KEY,
-    order_id VARCHAR(32) UNIQUE NOT NULL,
+    review_id VARCHAR(32) NOT NULL,
+    order_id VARCHAR(32) NOT NULL,
     review_score INTEGER NOT NULL,
     review_comment_title TEXT,
     review_comment_message TEXT,
     review_creation_date TIMESTAMP NOT NULL,
     review_answer_timestamp TIMESTAMP NOT NULL,
+
+    CONSTRAINT pk_order_reviews
+        PRIMARY KEY (review_id, order_id),
 
     CONSTRAINT fk_order_reviews_orders
         FOREIGN KEY (order_id)
