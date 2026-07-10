@@ -128,3 +128,71 @@ SELECT
 FROM orders
 WHERE order_delivered_customer_date > order_estimated_delivery_date;
 
+-- ------------ Product Profiling---------------------
+-- inspect the product data
+SELECT 
+* 
+FROM products LIMIT 5
+
+-- count the total rows in product table
+SELECT COUNT(*) AS total_products
+FROM products;
+
+-- count the number of products in each product category
+SELECT COUNT(DISTINCT product_category_name) AS total_categories
+FROM products;
+
+-- top 10 product categories
+SELECT
+    product_category_name,
+    COUNT(*) AS total_products
+FROM products
+GROUP BY product_category_name
+ORDER BY total_products DESC
+LIMIT 10;
+
+
+-- missing value ovservation
+SELECT
+    COUNT(*) AS total_rows,
+    COUNT(product_category_name) AS category,
+    COUNT(product_name_length) AS name_length,
+    COUNT(product_description_length) AS description_length,
+    COUNT(product_photos_qty) AS photos,
+    COUNT(product_weight_g) AS weight,
+    COUNT(product_length_cm) AS length,
+    COUNT(product_height_cm) AS height,
+    COUNT(product_width_cm) AS width
+FROM products;
+
+-- product numerical summary
+SELECT
+    ROUND(AVG(product_weight_g), 2) AS avg_weight,
+    ROUND(MIN(product_weight_g), 2) AS min_weight,
+    ROUND(MAX(product_weight_g), 2) AS max_weight,
+
+    ROUND(AVG(product_length_cm), 2) AS avg_length,
+    ROUND(AVG(product_height_cm), 2) AS avg_height,
+    ROUND(AVG(product_width_cm), 2) AS avg_width
+FROM products;
+
+-- product name statistics
+SELECT
+    AVG(product_name_length) AS avg_name_length,
+    MIN(product_name_length) AS min_name_length,
+    MAX(product_name_length) AS max_name_length
+FROM products;
+
+-- product description statistics
+SELECT
+    ROUND(AVG(product_description_length), 2) AS avg_description_length,
+    MIN(product_description_length) AS min_description_length,
+    MAX(product_description_length) AS max_description_length
+FROM products;
+
+-- product photo statistics
+SELECT
+    ROUND(AVG(product_photos_qty), 2) AS avg_photos,
+    MIN(product_photos_qty) AS min_photos,
+    MAX(product_photos_qty) AS max_photos
+FROM products;

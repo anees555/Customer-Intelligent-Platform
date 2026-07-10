@@ -92,4 +92,33 @@ This indicates that a noticeable portion of deliveries experienced delays. In la
 * Delivery performance appears satisfactory on average, but extreme delivery delays and late deliveries warrant further investigation.
 
 
+## Products Table Profiling
 
+### Dataset Overview
+
+* Total product records: **32,951**
+* Product categories: **73**
+
+### Product Distribution
+
+* The largest product categories are **cama_mesa_banho**, **esporte_lazer**, **moveis_decoracao**, **beleza_saude**, and **utilidades_domesticas**, indicating that home, lifestyle, and leisure products dominate the marketplace.
+
+### Data Quality Assessment
+
+* **610** products have missing category, name length, description length, and photo count information.
+* Only **2** products have missing physical dimensions (weight, length, height, and width).
+* Overall, the dataset is highly complete with only a small proportion of missing values.
+
+### Product Characteristics
+
+* Average product weight: **2.28 kg**
+* Average dimensions: **30.82 cm × 16.94 cm × 23.20 cm**
+* Product names average **48 characters** in length.
+* Product descriptions average **772 characters**, indicating that most products contain detailed descriptions.
+* Products have an average of **2.19 images**, with some listings containing up to **20 images**.
+
+### Initial Business Insights
+
+* The marketplace offers a diverse product catalog across **73 categories**.
+* Home-related and lifestyle products represent the largest share of the inventory.
+* Product metadata is largely complete, making the dataset suitable for feature engineering and predictive modeling.
