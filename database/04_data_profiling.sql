@@ -64,4 +64,67 @@ SELECT
 FROM customers;
 -- no missing value identified
 
+-- Total number of rows in orders table
+SELECT COUNT(*) AS total_orders
+FROM orders;
+
+-- order status ovservation
+SELECT
+    order_status,
+    COUNT(*) AS total_orders
+FROM orders
+GROUP BY order_status
+ORDER BY total_orders DESC;
+
+-- timespan between the first order to the last order in the table
+SELECT
+    MIN(order_purchase_timestamp) AS first_order,
+    MAX(order_purchase_timestamp) AS last_order
+FROM orders;
+
+-- missing value ovservation
+SELECT
+    COUNT(*) AS total_rows,
+    COUNT(order_id) AS order_id,
+    COUNT(customer_id) AS customer_id,
+    COUNT(order_status) AS order_status,
+    COUNT(order_purchase_timestamp) AS purchase_time,
+    COUNT(order_approved_at) AS approved_at,
+    COUNT(order_delivered_carrier_date) AS carrier_date,
+    COUNT(order_delivered_customer_date) AS delivered_date,
+    COUNT(order_estimated_delivery_date) AS estimated_delivery
+FROM orders;
+
+-- to find out the top 10 repeated customers
+SELECT
+    c.customer_unique_id,
+    COUNT(o.order_id) AS total_orders
+FROM orders o
+INNER JOIN customers c
+ON o.customer_id = c.customer_id
+GROUP BY c.customer_unique_id
+ORDER BY total_orders DESC
+LIMIT 10;
+
+-- to analyse the monthly sales trend
+SELECT
+	DATE_TRUNC('month', order_purchase_timestamp) AS month,
+	COUNT(*) AS total_orders
+FROM orders
+GROUP BY month
+ORDER BY month
+
+-- to calculate the average, minimum and maximum delivery time form purchase time to delivered time 
+SELECT
+    AVG(order_delivered_customer_date - order_purchase_timestamp) AS avg_delivery_time,
+	MAX(order_delivered_customer_date - order_purchase_timestamp) AS max_delivery_time,
+	MIN(order_delivered_customer_date - order_purchase_timestamp) AS min_delivery_time
+FROM orders
+WHERE order_delivered_customer_date IS NOT NULL;
+
+-- to count the total number of delayed orders
+SELECT
+    COUNT(*) AS delayed_orders
+FROM orders
+WHERE order_delivered_customer_date > order_estimated_delivery_date;
 
