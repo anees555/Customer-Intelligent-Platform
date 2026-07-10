@@ -122,3 +122,37 @@ This indicates that a noticeable portion of deliveries experienced delays. In la
 * The marketplace offers a diverse product catalog across **73 categories**.
 * Home-related and lifestyle products represent the largest share of the inventory.
 * Product metadata is largely complete, making the dataset suitable for feature engineering and predictive modeling.
+
+
+## Order Items Table Profiling
+
+### Dataset Overview
+
+* Total order item records: **112,650**
+* Orders containing at least one item: **98,666**
+* Unique products sold: **32,951**
+* Active sellers: **3,095**
+
+### Data Quality Assessment
+
+* No missing values were found in any column.
+* The number of unique orders in `order_items` is **775 fewer** than the total number of orders in the `orders` table, indicating that some orders do not have associated order items. These are primarily orders that did not complete the normal fulfillment process.
+
+### Pricing & Shipping
+
+* Average product price: **120.65**
+* Product prices range from **0.85** to **6,735.00**.
+* Average freight cost: **19.99**
+* Freight charges range from **0.00** to **409.68**.
+
+### Order Characteristics
+
+* Some orders contain multiple products, with the largest order consisting of **21 items**.
+* Product sales are concentrated among a relatively small number of highly popular products.
+* The highest-revenue products differ from the most frequently sold products, indicating that expensive products can generate substantial revenue even with lower sales volumes.
+
+### Initial Business Insights
+
+* The marketplace offers products from over **3,000 sellers**, demonstrating a diverse seller ecosystem.
+* Product popularity and product revenue are not always correlated, suggesting that both sales volume and product price contribute to business performance.
+* The `order_items` table will serve as the primary source for revenue analysis, sales trends, and customer purchasing behavior in later stages of the project.

@@ -196,3 +196,71 @@ SELECT
     MIN(product_photos_qty) AS min_photos,
     MAX(product_photos_qty) AS max_photos
 FROM products;
+
+
+----------- Order_items dataset profiling -----------------------
+
+-- count the numeber of records in order_items table
+SELECT COUNT(*) AS total_order_items
+FROM order_items;
+
+-- count the unique orders that contain items
+SELECT COUNT(DISTINCT order_id) AS total_orders
+FROM order_items;
+
+SELECT COUNT(DISTINCT product_id) AS unique_products_sold
+FROM order_items;
+
+
+SELECT COUNT(DISTINCT seller_id) AS total_sellers
+FROM order_items;
+
+SELECT
+    COUNT(*) AS total_rows,
+    COUNT(order_id) AS order_id,
+    COUNT(order_item_id) AS order_item_id,
+    COUNT(product_id) AS product_id,
+    COUNT(seller_id) AS seller_id,
+    COUNT(shipping_limit_date) AS shipping_limit_date,
+    COUNT(price) AS price,
+    COUNT(freight_value) AS freight_value
+FROM order_items;
+
+SELECT
+    ROUND(AVG(price),2) AS avg_price,
+    MIN(price) AS min_price,
+    MAX(price) AS max_price
+FROM order_items;
+
+SELECT
+    ROUND(AVG(freight_value),2) AS avg_freight,
+    MIN(freight_value) AS min_freight,
+    MAX(freight_value) AS max_freight
+FROM order_items;
+
+-- multiple items orders
+SELECT
+    COUNT(*) AS items_per_order,
+    COUNT(order_id) AS total_orders
+FROM order_items
+GROUP BY order_id
+ORDER BY items_per_order DESC
+LIMIT 10;
+
+-- most sold product
+SELECT
+    product_id,
+    COUNT(*) AS total_sold
+FROM order_items
+GROUP BY product_id
+ORDER BY total_sold DESC
+LIMIT 10;
+
+-- Highest revinue product
+SELECT
+    product_id,
+    ROUND(SUM(price),2) AS revenue
+FROM order_items
+GROUP BY product_id
+ORDER BY revenue DESC
+LIMIT 10;
