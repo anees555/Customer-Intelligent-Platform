@@ -264,3 +264,144 @@ FROM order_items
 GROUP BY product_id
 ORDER BY revenue DESC
 LIMIT 10;
+
+------------ Sellers Table Data profiling -------------------------
+-- Count the sellers
+SELECT COUNT(*) AS total_sellers
+FROM sellers;
+
+-- Geographical distribution
+SELECT
+    seller_state,
+    COUNT(*) AS total_sellers
+FROM sellers
+GROUP BY seller_state
+ORDER BY total_sellers DESC;
+
+-- Top seller cities
+SELECT
+    seller_city,
+    COUNT(*) AS total_sellers
+FROM sellers
+GROUP BY seller_city
+ORDER BY total_sellers DESC
+LIMIT 10;
+
+-- Missing Value observation: 
+SELECT
+    COUNT(*) AS total_rows,
+    COUNT(seller_id) AS seller_id,
+    COUNT(seller_zip_code_prefix) AS zip_code,
+    COUNT(seller_city) AS city,
+    COUNT(seller_state) AS state
+FROM sellers;
+
+------------ Order Payments table profiling ---------------------------
+-- Count the number of rows
+SELECT COUNT(*) AS total_payment_records
+FROM order_payments;
+
+-- Payment types analysis
+SELECT
+    payment_type,
+    COUNT(*) AS total_transactions
+FROM order_payments
+GROUP BY payment_type
+ORDER BY total_transactions DESC;
+
+-- Installments
+SELECT
+    payment_installments,
+    COUNT(*) AS total_orders
+FROM order_payments
+GROUP BY payment_installments
+ORDER BY payment_installments;
+
+-- payment statistics
+SELECT
+    ROUND(AVG(payment_value),2) AS avg_payment,
+    MIN(payment_value) AS min_payment,
+    MAX(payment_value) AS max_payment
+FROM order_payments;
+
+-- Missing value observation
+SELECT
+    COUNT(*) AS total_rows,
+    COUNT(order_id),
+    COUNT(payment_sequential),
+    COUNT(payment_type),
+    COUNT(payment_installments),
+    COUNT(payment_value)
+FROM order_payments;
+
+
+-------------------- Order Reviews Table profiling ---------------------------
+
+-- Total reviews : 
+ SELECT COUNT(*) AS total_reviews
+FROM order_reviews;
+
+ -- Review score distribution 
+ SELECT
+    review_score,
+    COUNT(*) AS total_reviews
+FROM order_reviews
+GROUP BY review_score
+ORDER BY review_score;
+
+ --  Missing value observation: 
+ SELECT
+    COUNT(*) AS total_rows,
+    COUNT(review_id),
+    COUNT(order_id),
+    COUNT(review_score),
+    COUNT(review_comment_title),
+    COUNT(review_comment_message),
+    COUNT(review_creation_date),
+    COUNT(review_answer_timestamp)
+FROM order_reviews;
+
+ --  Average review: 
+ SELECT
+    ROUND(AVG(review_score),2) AS average_rating
+FROM order_reviews;
+
+--------- Geolocation Table Profiling --------------------
+
+-- * Total Rows: 
+SELECT COUNT(*) AS total_locations
+FROM geolocation;
+
+-- * Group by states : 
+SELECT
+    geolocation_state,
+    COUNT(*) AS locations
+FROM geolocation
+GROUP BY geolocation_state
+ORDER BY locations DESC;
+
+-- * total cities : 
+SELECT COUNT(DISTINCT geolocation_city)
+FROM geolocation;
+
+-- * missing value observation :
+SELECT
+    COUNT(*) AS total_rows,
+    COUNT(geolocation_zip_code_prefix),
+    COUNT(geolocation_lat),
+    COUNT(geolocation_lng),
+    COUNT(geolocation_city),
+    COUNT(geolocation_state)
+FROM geolocation;
+
+------------- Product categories profiling ---------------------
+-- * Count rows: 
+SELECT COUNT(*) AS total_categories
+FROM product_categories;
+
+-- * Missing value observation: 
+SELECT
+    COUNT(*) AS total_rows,
+    COUNT(product_category_name),
+    COUNT(product_category_name_english)
+FROM product_categories;

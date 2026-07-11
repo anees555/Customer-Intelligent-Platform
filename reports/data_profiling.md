@@ -156,3 +156,102 @@ This indicates that a noticeable portion of deliveries experienced delays. In la
 * The marketplace offers products from over **3,000 sellers**, demonstrating a diverse seller ecosystem.
 * Product popularity and product revenue are not always correlated, suggesting that both sales volume and product price contribute to business performance.
 * The `order_items` table will serve as the primary source for revenue analysis, sales trends, and customer purchasing behavior in later stages of the project.
+
+
+## Sellers Table Profiling
+
+### Dataset Overview
+
+* Total sellers: **3,095**
+
+### Geographic Distribution
+
+* Sellers are distributed across multiple Brazilian states, with the majority located in **São Paulo (SP)**, followed by **Paraná (PR)** and **Minas Gerais (MG)**.
+* **São Paulo** is also the city with the highest number of sellers.
+
+### Data Quality Assessment
+
+* No missing values were found in any seller-related attributes.
+
+### Initial Business Insights
+
+* The seller network is geographically concentrated in Brazil's major commercial regions, particularly São Paulo, indicating a strong regional presence of marketplace vendors.
+
+---
+
+## Order Payments Table Profiling
+
+### Dataset Overview
+
+* Total payment records: **103,886**
+
+### Payment Analysis
+
+* **Credit cards** are the dominant payment method, followed by **boleto**, **voucher**, and **debit card**.
+* Most customers complete purchases using **a single installment**, although installment payments of up to **24 months** are present.
+
+### Data Quality Assessment
+
+* No missing values were found in the payment dataset.
+
+### Initial Business Insights
+
+* Credit card transactions dominate customer purchases, highlighting the importance of installment-based payment options within the marketplace.
+
+---
+
+## Order Reviews Table Profiling
+
+### Dataset Overview
+
+* Total reviews: **99,224**
+* Average review score: **4.09 / 5**
+
+### Review Analysis
+
+* Five-star reviews represent the largest proportion of customer feedback, indicating generally high customer satisfaction.
+
+### Data Quality Assessment
+
+* Review titles and review comments contain a significant number of missing values, suggesting that many customers submitted only a rating without written feedback.
+
+### Initial Business Insights
+
+* Customer satisfaction appears generally positive, making review scores a valuable target variable for later analysis of delivery performance and customer experience.
+
+---
+
+## Geolocation Table Profiling
+
+### Dataset Overview
+
+* Total geolocation records: **1,000,163**
+* Cities represented: **8,011**
+
+### Geographic Distribution
+
+* The largest number of location records belongs to **São Paulo (SP)**, followed by **Minas Gerais (MG)** and **Rio de Janeiro (RJ)**.
+
+### Data Quality Assessment
+
+* No missing values were identified in the geolocation dataset.
+
+### Initial Business Insights
+
+* The geolocation table provides comprehensive location coverage across Brazil and will support regional analyses of customers, sellers, and logistics.
+
+---
+
+## Product Categories Table Profiling
+
+### Dataset Overview
+
+* Total product categories: **73**
+
+### Data Quality Assessment
+
+* No missing values were found.
+
+### Initial Business Insights
+
+* The category translation table serves as a lookup table, enabling Portuguese product categories to be presented in English for reporting and visualization.
