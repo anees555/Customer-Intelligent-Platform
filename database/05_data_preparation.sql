@@ -47,7 +47,44 @@ SELECT
 FROM orders o
 JOIN item_summary i
 ON o.order_id = i.order_id
-JOIN payment_summary p
+LEFT JOIN payment_summary p
 ON o.order_id = p.order_id
-JOIN review_summary r
+LEFT JOIN review_summary r
 ON o.order_id = r.order_id;
+
+-- ============================================
+-- ORDER SUMMARY VALIDATION
+-- ============================================
+
+-- row count
+SELECT COUNT(*)
+FROM order_summary;
+
+-- check uniqueness
+SELECT
+    COUNT(*) AS total_rows,
+    COUNT(DISTINCT order_id) AS unique_orders
+FROM order_summary;
+
+-- check null
+SELECT
+    COUNT(*) AS total_rows,
+    COUNT(order_id) AS order_id,
+    COUNT(customer_id) AS customer_id,
+    COUNT(total_items) AS total_items,
+    COUNT(total_product_price) AS total_product_price,
+    COUNT(total_payment) AS total_payment,
+    COUNT(review_score) AS review_score
+FROM order_summary;
+
+-- validate the payment consistency
+SELECT
+    order_id,
+    total_product_price,
+    total_freight,
+    total_payment,
+    (total_product_price + total_freight) AS expected_payment
+FROM order_summary
+WHERE ABS(
+    (total_product_price + total_freight) - total_payment
+) > 0.01;

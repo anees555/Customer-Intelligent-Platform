@@ -12,3 +12,31 @@ The following analytical views will be developed:
 - seller_summary
 
 Each view has a clearly defined grain and is designed for reporting, business intelligence, and machine learning.
+
+
+## Order Summary View
+
+### Purpose
+
+The `order_summary` view provides a denormalized order-level dataset by combining information from orders, order items, payments, and reviews.
+
+### Grain
+
+One row represents one order.
+
+### Source Tables
+
+- orders
+- order_items
+- order_payments
+- order_reviews
+
+### Features
+
+- Order details
+- Financial metrics
+- Product metrics
+- Delivery metrics
+- Review score
+
+This view serves as the foundation for customer, seller, and product analytical datasets.

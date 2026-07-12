@@ -48,7 +48,7 @@ SELECT
 FROM orders o
 JOIN item_summary i
 ON o.order_id = i.order_id
-JOIN payment_summary p
+LEFT JOIN payment_summary p
 ON o.order_id = p.order_id
-JOIN review_summary r
+LEFT JOIN review_summary r
 ON o.order_id = r.order_id;
