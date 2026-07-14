@@ -59,6 +59,7 @@ One row represents one unique customer (`customer_unique_id`).
 
 ### Key Features
 
+
 - Total orders
 - Total products purchased
 - Total amount spent
@@ -67,3 +68,36 @@ One row represents one unique customer (`customer_unique_id`).
 - Average delivery time
 - First and last purchase dates
 - Customer lifetime
+
+## Product Summary View
+
+### Purpose
+
+The `product_summary` view provides one analytical record per product by combining product information with sales and order-level metrics. It is designed to support product performance analysis, category analysis, and sales reporting.
+
+### Grain
+
+One row represents one product (`product_id`).
+
+### Source Tables
+
+- products
+- order_items
+- order_summary
+
+### Features
+
+- Product ID
+- Product category
+- Total units sold
+- Total orders
+- Total revenue
+- Total freight
+- Average selling price
+- Average review score
+- Average delivery days
+
+### Notes
+
+- Revenue represents the total selling price of products and does not include freight charges.
+- Review scores are available at the order level in the Olist dataset. Therefore, when an order contains multiple products, the same review score is associated with each product in that order.
