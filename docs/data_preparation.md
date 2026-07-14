@@ -101,3 +101,38 @@ One row represents one product (`product_id`).
 
 - Revenue represents the total selling price of products and does not include freight charges.
 - Review scores are available at the order level in the Olist dataset. Therefore, when an order contains multiple products, the same review score is associated with each product in that order.
+
+
+## Seller Summary View
+
+### Purpose
+
+The `seller_summary` view provides one analytical record per seller by combining seller information with sales and order-level metrics. It is designed to support seller performance analysis, revenue analysis, and geographical seller insights.
+
+### Grain
+
+One row represents one seller (`seller_id`).
+
+### Source Tables
+
+- sellers
+- order_items
+- order_summary
+
+### Features
+
+- Seller ID
+- Seller city
+- Seller state
+- Total orders
+- Total units sold
+- Total revenue
+- Total freight
+- Average product price
+- Average review score
+- Average delivery days
+
+### Notes
+
+- Revenue represents the total selling price of products and excludes freight charges.
+- Review scores are available at the order level in the Olist dataset. Therefore, if an order contains products from multiple sellers, the same review score is associated with each seller involved in that order.

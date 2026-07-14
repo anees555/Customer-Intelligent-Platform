@@ -147,3 +147,51 @@ ON os.order_id = oi.order_id
 INNER JOIN products p
 ON p.product_id = oi.product_id
 GROUP BY p.product_id, p.product_category_name;
+
+================================================================================
+
+----------------------- Seller summary for analysis ----------------------------
+
+SELECT
+    s.seller_id,
+    s.seller_city,
+    s.seller_state,
+
+    COUNT(DISTINCT oi.order_id) AS total_orders,
+    COUNT(*) AS total_units_sold,
+
+    SUM(oi.price) AS total_revenue,
+    SUM(oi.freight_value) AS total_freight,
+
+    ROUND(AVG(oi.price), 2) AS avg_product_price,
+    ROUND(AVG(os.review_score), 2) AS avg_review_score,
+    ROUND(AVG(os.delivery_days), 2) AS avg_delivery_days
+
+FROM order_items oi
+
+INNER JOIN order_summary os
+    ON oi.order_id = os.order_id
+
+INNER JOIN sellers s
+    ON oi.seller_id = s.seller_id
+
+GROUP BY
+    s.seller_id,
+    s.seller_city,
+    s.seller_state;
+
+-- ============================================
+-- SELLER SUMMARY VALIDATION
+-- ============================================
+SELECT COUNT(*)
+FROM seller_summary;
+
+SELECT
+    COUNT(*) AS total_rows,
+    COUNT(DISTINCT seller_id) AS unique_sellers
+FROM seller_summary;
+
+SELECT *
+FROM seller_summary
+ORDER BY total_revenue DESC
+LIMIT 10;
