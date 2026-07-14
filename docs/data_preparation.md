@@ -40,3 +40,30 @@ One row represents one order.
 - Review score
 
 This view serves as the foundation for customer, seller, and product analytical datasets.
+
+## Customer Summary View
+
+### Purpose
+
+Provides one analytical record per customer by aggregating order-level metrics from the `order_summary` view.
+
+### Grain
+
+One row represents one unique customer (`customer_unique_id`).
+
+### Source Tables
+
+- customers
+- customer_summary
+
+
+### Key Features
+
+- Total orders
+- Total products purchased
+- Total amount spent
+- Average order value
+- Average review score
+- Average delivery time
+- First and last purchase dates
+- Customer lifetime

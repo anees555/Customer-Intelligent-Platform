@@ -88,3 +88,41 @@ FROM order_summary
 WHERE ABS(
     (total_product_price + total_freight) - total_payment
 ) > 0.01;
+
+-- ==============================================================================================
+
+----------------- Customer summary -------------------------------------------
+SELECT
+    c.customer_unique_id,
+    COUNT(*) AS total_orders,
+    SUM(os.total_payment) AS total_spent,
+    SUM(os.total_items) AS total_products,
+    SUM(os.total_freight) AS total_freight_paid,
+    ROUND(AVG(os.total_payment), 2) AS avg_order_value,
+    ROUND(AVG(os.review_score), 2) AS avg_review_score,
+    ROUND(AVG(os.delivery_days), 2) AS avg_delivery_days,
+    MIN(os.order_purchase_timestamp::date) AS first_purchase,
+    MAX(os.order_purchase_timestamp::date) AS last_purchase,
+    MAX(os.order_purchase_timestamp::date) -
+    MIN(os.order_purchase_timestamp::date) AS customer_lifetime_days
+FROM customers c
+INNER JOIN order_summary os
+    ON c.customer_id = os.customer_id
+GROUP BY c.customer_unique_id;
+
+-- ============================================
+-- CUSTOMER SUMMARY VALIDATION
+-- ============================================
+
+SELECT COUNT(*)
+FROM customer_summary;
+
+SELECT
+    COUNT(*) AS total_rows,
+    COUNT(DISTINCT customer_unique_id) AS unique_customers
+FROM customer_summary;
+
+SELECT *
+FROM customer_summary
+ORDER BY total_spent DESC
+LIMIT 10;
