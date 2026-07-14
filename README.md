@@ -29,10 +29,25 @@ The project follows the **CRISP-DM** methodology to simulate a real-world data e
 
 ---
 
+## CRISP-DM Workflow
+
+Business Understanding  ✅
+        ↓
+Data Understanding      ✅
+        ↓
+Data Preparation        ✅
+        ↓
+Modeling                ⏳
+        ↓
+Evaluation              ⏳
+        ↓
+Deployment              ⏳
+
 ## Project Structure
 
 ```text
 Customer-Intelligence-Platform/
+
 │
 ├── data/
 │   └── raw/
