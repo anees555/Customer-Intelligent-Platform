@@ -269,3 +269,230 @@ A large proportion of customers have not purchased recently, highlighting an opp
 ## Overall Customer Insights
 
 The customer analysis reveals that the business serves a broad customer base but relies heavily on one-time purchasers. Although high-value customers contribute a significant share of revenue, they represent only a small fraction of the overall customer population. Customer lifetime is generally short, repeat purchase rates are low, and more than half of customers are identified as being at risk of churn. These findings suggest that future business strategies should prioritize customer retention, loyalty programs, and personalized marketing to improve long-term customer value.
+
+__________________________________________________________________________________________________________________________________
+
+# Sales Analysis
+
+## Overview
+
+The sales analysis examines the overall business performance by evaluating revenue trends, order volume, customer purchasing behavior, payment preferences, operational efficiency, and seasonal sales patterns. The objective is to understand how the business has evolved over time and identify opportunities for improving sales performance.
+
+---
+
+## 1. Monthly Revenue Trend
+
+### Business Question
+
+How has the company's revenue changed over time?
+
+### Purpose
+
+To evaluate business growth, identify periods of rapid expansion or decline, and detect long-term sales trends.
+
+### Key Findings
+
+- Revenue increased steadily throughout 2017, indicating continuous business growth.
+- November 2017 generated the highest monthly revenue during the observed period, exceeding **1.17 million**.
+- Revenue remained consistently above **1 million** during several months of 2018.
+- The extremely low revenue observed in September 2016, December 2016, and September 2018 is due to incomplete data for those months and should not be interpreted as actual business performance.
+
+### Business Insight
+
+The marketplace experienced rapid expansion during 2017 and maintained strong sales performance throughout 2018. The significant increase in revenue during November suggests the impact of seasonal shopping events such as Black Friday.
+
+---
+
+## 2. Monthly Order Trend
+
+### Business Question
+
+How has the number of customer orders changed over time?
+
+### Purpose
+
+To determine whether business growth was driven by increasing customer demand.
+
+### Key Findings
+
+- Order volume closely followed the revenue trend.
+- Monthly orders increased from fewer than **1,000** orders in early 2017 to over **7,000** orders during peak periods.
+- November 2017 recorded the largest monthly order volume.
+
+### Business Insight
+
+The increase in revenue is primarily associated with an increase in customer orders rather than unusually expensive purchases, indicating healthy marketplace growth.
+
+---
+
+## 3. Average Order Value (AOV)
+
+### Business Question
+
+Has the average spending per order changed over time?
+
+### Purpose
+
+To evaluate customer purchasing behavior and basket size.
+
+### Key Findings
+
+- Average Order Value remained relatively stable throughout the analysis period.
+- Monthly AOV generally ranged between **147** and **185**.
+- No significant upward or downward trend was observed.
+
+### Business Insight
+
+Although overall revenue increased substantially, customers maintained relatively consistent spending per order. Business growth was therefore driven mainly by increasing transaction volume rather than larger basket sizes.
+
+---
+
+## 4. Delivery Performance Trend
+
+### Business Question
+
+Has delivery performance improved over time?
+
+### Purpose
+
+To evaluate logistics efficiency and delivery operations.
+
+### Key Findings
+
+- Delivery performance improved considerably over time.
+- Average delivery time decreased from approximately **15–17 days** during late 2017 and early 2018 to approximately **8 days** by August 2018.
+- The unusually high delivery time observed in September 2016 is based on only a few orders and is not representative.
+
+### Business Insight
+
+The continuous reduction in delivery time indicates improvements in logistics operations, which can positively influence customer satisfaction and repeat purchases.
+
+---
+
+## 5. Revenue by Payment Method
+
+### Business Question
+
+Which payment methods contribute the highest revenue?
+
+### Purpose
+
+To understand customer payment preferences.
+
+### Results
+
+| Payment Type | Transactions | Total Revenue |
+|--------------|-------------:|--------------:|
+| Credit Card | 76,795 | 12.54 M |
+| Boleto | 19,784 | 2.87 M |
+| Voucher | 5,775 | 0.38 M |
+| Debit Card | 1,529 | 0.22 M |
+
+### Key Findings
+
+- Credit cards account for the overwhelming majority of both transactions and revenue.
+- Boleto is the second most popular payment method.
+- Voucher and debit card transactions represent only a small proportion of overall sales.
+
+### Business Insight
+
+Credit cards are the dominant payment method used by customers. Maintaining a seamless credit card payment experience should remain a business priority.
+
+---
+
+## 6. Weekly Order Distribution
+
+### Business Question
+
+On which weekdays do customers place the most orders?
+
+### Results
+
+| Weekday | Orders |
+|----------|-------:|
+| Monday | 16,068 |
+| Tuesday | 15,831 |
+| Wednesday | 15,425 |
+| Thursday | 14,639 |
+| Friday | 14,002 |
+| Sunday | 11,888 |
+| Saturday | 10,813 |
+
+### Key Findings
+
+- Customer activity is highest during weekdays.
+- Monday records the highest number of orders.
+- Saturday has the lowest purchasing activity.
+
+### Business Insight
+
+Customers primarily place orders during the working week. Marketing campaigns, promotions, and operational planning should prioritize weekday demand.
+
+---
+
+## 7. Monthly Revenue Growth
+
+### Business Question
+
+How much does monthly revenue increase or decrease compared with the previous month?
+
+### Purpose
+
+To measure business growth dynamics over time.
+
+### Key Findings
+
+- Revenue experienced consistent positive growth throughout most of 2017.
+- November 2017 recorded the largest month-over-month increase, with revenue increasing by approximately **410 thousand**.
+- Revenue fluctuations during 2018 became relatively moderate after the rapid expansion observed in 2017.
+- Extremely large declines observed in incomplete months should be ignored.
+
+### Business Insight
+
+The business transitioned from a rapid growth phase during 2017 to a more stable and mature sales pattern throughout 2018.
+
+---
+
+## 8. Seasonal Sales Analysis
+
+### Business Question
+
+Which months consistently generate the highest sales?
+
+### Purpose
+
+To identify recurring seasonal purchasing patterns.
+
+### Results
+
+| Month | Revenue |
+|--------|--------:|
+| January | 1.25 M |
+| February | 1.27 M |
+| March | 1.59 M |
+| April | 1.57 M |
+| May | 1.74 M |
+| June | 1.53 M |
+| July | 1.64 M |
+| August | 1.67 M |
+| September | 0.72 M |
+| October | 0.83 M |
+| November | 1.18 M |
+| December | 0.86 M |
+
+### Key Findings
+
+- May generated the highest cumulative revenue across all years.
+- July and August also demonstrated consistently strong sales performance.
+- November experienced exceptionally high monthly revenue due to seasonal shopping events.
+- September and October recorded comparatively lower sales.
+
+### Business Insight
+
+The marketplace exhibits clear seasonal purchasing behavior. Inventory planning, promotional campaigns, and logistics capacity should be increased before high-demand months to maximize revenue opportunities.
+
+---
+
+# Overall Sales Insights
+
+The sales analysis demonstrates that the marketplace experienced rapid growth throughout 2017, followed by sustained performance during 2018. Revenue growth was primarily driven by increasing order volume rather than changes in average order value. Delivery performance improved considerably over time, suggesting enhancements in logistics operations. Credit cards remain the dominant payment method, while purchasing activity is concentrated during weekdays. Seasonal analysis further indicates recurring periods of elevated customer demand, highlighting opportunities for targeted marketing campaigns and strategic inventory planning.

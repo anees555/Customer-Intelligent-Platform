@@ -259,3 +259,88 @@ SELECT
     ) AS customer_percentage
 FROM customer_summary
 GROUP BY customer_status;
+
+__________________________________________________________________________________________________________________________________
+
+-- Sales Analysis
+
+-- How has revenue changed over time? (Monthly revenue trend)
+-- How has order volume changed over time?
+-- Which months generate the highest revenue?
+-- Which weekdays receive the most orders?
+-- Average Order Value (AOV) trend over time
+-- Revenue by payment type
+-- Average delivery time by month
+-- Order status distribution
+
+-- Analysis 1: Revenue Trend and Order Trend analysis
+SELECT
+DATE_TRUNC('month', order_purchase_timestamp)::date AS months,
+SUM(product_payment) AS monthly_product_payment,
+COUNT(order_id) AS total_orders
+FROM order_summary
+GROUP BY months
+ORDER BY months
+
+-- Analysis 2: Monthly Average Order Value (AOV)
+SELECT
+    DATE_TRUNC('month', order_purchase_timestamp)::date AS month,
+    ROUND(AVG(total_payment),2) AS average_order_value
+FROM order_summary
+GROUP BY month
+ORDER BY month;
+
+-- Analysis 3: Monthly Delivery Performance
+SELECT
+    DATE_TRUNC('month', order_purchase_timestamp)::date AS month,
+    ROUND(AVG(delivery_days),2) AS average_delivery_days
+FROM order_summary
+GROUP BY month
+ORDER BY month;
+
+-- Analysis 4: Revenue by Payment Type
+SELECT
+    payment_type,
+    COUNT(*) AS transactions,
+    SUM(payment_value) AS total_revenue,
+    ROUND(AVG(payment_value),2) AS average_payment
+FROM order_payments
+GROUP BY payment_type
+ORDER BY total_revenue DESC;
+
+-- Analysis 5: Weekday Order Distribution
+SELECT
+    TO_CHAR(order_purchase_timestamp,'Day') AS weekday,
+    COUNT(*) AS total_orders
+FROM order_summary
+GROUP BY weekday,
+EXTRACT(DOW FROM order_purchase_timestamp)
+ORDER BY EXTRACT(DOW FROM order_purchase_timestamp);
+
+-- Analysis 6: Monthly Revenue Growth
+SELECT
+    month,
+    monthly_revenue,
+    monthly_revenue -
+    LAG(monthly_revenue) OVER(
+        ORDER BY month
+    ) AS revenue_change
+FROM(
+    SELECT
+        DATE_TRUNC('month',order_purchase_timestamp)::date AS month,
+        SUM(total_payment) AS monthly_revenue
+    FROM order_summary
+    GROUP BY month
+)t;
+
+-- Analysis 7: Seasonality Analysis
+
+SELECT
+    TO_CHAR(order_purchase_timestamp, 'Month') AS month_name,
+    EXTRACT(MONTH FROM order_purchase_timestamp) AS month_number,
+    COUNT(order_id) AS total_orders,
+    SUM(total_payment) AS total_revenue,
+    ROUND(AVG(total_payment), 2) AS average_order_value
+FROM order_summary
+GROUP BY month_name, month_number
+ORDER BY month_number;
