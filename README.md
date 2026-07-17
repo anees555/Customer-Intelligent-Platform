@@ -20,7 +20,7 @@ The project follows the **CRISP-DM** methodology to simulate a real-world data e
 - [x] Data Understanding & Profiling
 - [x] Data Validation
 - [x] Data Preparation (Analytical Views)
-- [ ] Exploratory Data Analysis (EDA)
+- [x] Exploratory Data Analysis (EDA)
 - [ ] Feature Engineering
 - [ ] Customer Segmentation
 - [ ] Machine Learning
@@ -131,6 +131,64 @@ The implementation is documented in **`docs/data_preparation.md`**.
 
 ---
 
+## SQL Exploratory Data Analysis
+
+A comprehensive SQL-based exploratory analysis was performed to answer key business questions across multiple business domains.
+
+### Executive KPIs
+
+- Total Customers
+- Total Orders
+- Total Revenue
+- Average Order Value
+- Average Delivery Time
+- Average Review Score
+- Repeat Customer Rate
+
+### Customer Analysis
+
+- Customer spending analysis
+- Top customers
+- Pareto analysis
+- Purchase frequency
+- Customer lifetime analysis
+- Customer recency analysis
+
+### Sales Analysis
+
+- Monthly revenue trend
+- Average order value trend
+- Payment method analysis
+- Weekday sales analysis
+- Seasonality analysis
+- Month-over-month revenue growth
+
+### Product Analysis
+
+- Top-selling products
+- Top product categories
+- Low-performing products
+- Product revenue contribution
+- Product review analysis
+
+### Seller Analysis
+
+- Best-performing sellers
+- Seller revenue contribution
+- Seller review performance
+- Seller delivery performance
+
+### Geographic Analysis
+
+- Revenue by state
+- Revenue by city
+- Customer distribution
+- Seller distribution
+- Delivery performance by state
+
+---
+
+
 ## Data Quality Challenges
 
 During database implementation, several real-world data quality issues were identified and resolved:
@@ -161,18 +219,7 @@ During database implementation, several real-world data quality issues were iden
 
 ## Next Milestone
 
-The next phase focuses on **Exploratory Data Analysis (EDA)** using the analytical views created during the data preparation phase.
-
-The objectives include:
-
-- Customer behavior analysis
-- Sales trend analysis
-- Product performance analysis
-- Seller performance analysis
-- Geographic analysis
-- KPI development
-
-These insights will later be used for feature engineering, customer segmentation, machine learning, and dashboard development.
+The next phase focuses on **Feature Engineering** using Python (Pandas). New analytical features will be created for customer segmentation, predictive modeling, and machine learning tasks such as customer lifetime value estimation, RFM analysis, churn prediction, and sales forecasting.
 
 ---
 
