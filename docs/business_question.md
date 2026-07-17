@@ -13,24 +13,7 @@ This project aims to answer a range of business questions by transforming raw tr
 * Which customers are at risk of churn based on their purchasing history?
 * Can customer behavior be leveraged to predict future purchases or customer lifetime value?
 
-Section 4: Product Analysis
 
-Questions:
-
-Top products
-Top categories
-Low-performing products
-Revenue contribution
-Review performance
-Section 5: Seller Analysis
-
-Questions:
-
-Best sellers
-Revenue by seller
-Seller ratings
-Seller delivery performance
-Section 6: Geographic Analysis
 
 Questions:
 

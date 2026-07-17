@@ -464,3 +464,217 @@ FROM product_summary
 GROUP BY product_category_name
 HAVING COUNT(*) >= 5
 ORDER BY average_review_score DESC;
+
+--________________________________________________________________________________________________________________________________
+
+-- Seller Analysis
+
+SELECT * FROM seller_summary LIMIT 5;
+
+-- Analysis 1: Best Sellers
+SELECT
+    seller_id,
+    seller_state,
+    total_orders,
+    total_units_sold,
+    total_revenue
+FROM seller_summary
+ORDER BY total_revenue DESC
+LIMIT 10;
+
+-- Analysis 2: Revenue by seller
+WITH ranked_sellers AS (
+
+SELECT
+    seller_id,
+    total_revenue,
+
+    ROW_NUMBER() OVER(
+        ORDER BY total_revenue DESC
+    ) AS seller_rank,
+
+    COUNT(*) OVER() AS total_sellers,
+
+    SUM(total_revenue) OVER() AS overall_revenue
+
+FROM seller_summary
+
+)
+
+SELECT
+    'Top 1%' AS seller_group,
+
+    ROUND(
+        SUM(total_revenue)*100.0/
+        MAX(overall_revenue),
+        2
+    ) AS revenue_percentage
+
+FROM ranked_sellers
+WHERE seller_rank <= CEIL(total_sellers*0.01)
+
+UNION ALL
+
+SELECT
+    'Top 5%',
+    ROUND(
+        SUM(total_revenue)*100.0/
+        MAX(overall_revenue),
+        2
+    )
+FROM ranked_sellers
+WHERE seller_rank <= CEIL(total_sellers*0.05)
+
+UNION ALL
+
+SELECT
+    'Top 10%',
+    ROUND(
+        SUM(total_revenue)*100.0/
+        MAX(overall_revenue),
+        2
+    )
+FROM ranked_sellers
+WHERE seller_rank <= CEIL(total_sellers*0.10);
+
+
+-- Analysis 3: Best Rated Sellers
+SELECT
+    seller_id,
+    seller_state,
+    total_orders,
+    avg_review_score
+FROM seller_summary
+WHERE total_orders >= 30
+ORDER BY avg_review_score DESC,
+         total_orders DESC
+LIMIT 10;
+
+-- Lowest Rated Sellers
+SELECT
+    seller_id,
+    seller_state,
+    total_orders,
+    avg_review_score
+FROM seller_summary
+WHERE total_orders >= 30
+ORDER BY avg_review_score,
+         total_orders DESC
+LIMIT 10;
+
+
+-- Analysis 4: Seller Delivery Performance
+SELECT
+    seller_id,
+    seller_state,
+    total_orders,
+    avg_delivery_days
+FROM seller_summary
+WHERE total_orders >= 30
+ORDER BY avg_delivery_days
+LIMIT 10;
+
+-- Slowest Delivery
+SELECT
+    seller_id,
+    seller_state,
+    total_orders,
+    avg_delivery_days
+FROM seller_summary
+WHERE total_orders >= 30
+ORDER BY avg_delivery_days DESC
+LIMIT 10;
+
+--________________________________________________________________________________________________________________________________
+
+SELECT * FROM customer_summary LIMIT 10
+SELECT * FROM customers LIMIT 10
+
+-- Geolocation Analysis
+-- Analysis 1: Revenue by State
+WITH customer_location AS (
+    SELECT DISTINCT
+        customer_unique_id,
+        customer_city,
+        customer_state
+    FROM customers
+)
+
+SELECT
+    cl.customer_state,
+    SUM(cs.total_orders) AS total_orders,
+    SUM(cs.total_spent) AS total_revenue,
+    ROUND(AVG(cs.avg_order_value),2) AS average_order_value
+FROM customer_summary cs
+JOIN customer_location cl
+ON cs.customer_unique_id = cl.customer_unique_id
+GROUP BY cl.customer_state
+ORDER BY total_revenue DESC;
+
+-- Analysis 2: Revenue By City
+WITH customer_location AS (
+    SELECT DISTINCT
+        customer_unique_id,
+        customer_city,
+        customer_state
+    FROM customers
+)
+
+SELECT
+    cl.customer_city,
+    SUM(cs.total_orders) AS total_orders,
+    SUM(cs.total_spent) AS total_revenue,
+    ROUND(AVG(cs.avg_order_value),2) AS average_order_value
+FROM customer_summary cs
+JOIN customer_location cl
+ON cs.customer_unique_id = cl.customer_unique_id
+GROUP BY cl.customer_city
+ORDER BY total_revenue DESC
+LIMIT 20;
+
+-- Analysis 3: Customer Distribution
+SELECT
+   	customer_state,
+    COUNT(DISTINCT customer_unique_id) AS total_customers,
+    ROUND(
+        COUNT(*)*100.0/
+        SUM(COUNT(*)) OVER(),
+        2
+    ) AS customer_percentage
+FROM customers
+GROUP BY customer_state
+ORDER BY total_customers DESC;
+
+
+-- Analysis 4: Seller Distribution
+SELECT
+    seller_state,
+    COUNT(*) AS total_sellers,
+    ROUND(
+        COUNT(*)*100.0/
+        SUM(COUNT(*)) OVER(),
+        2
+    ) AS seller_percentage
+FROM seller_summary
+GROUP BY seller_state
+ORDER BY total_sellers DESC;
+
+-- Analysis 5: Delivery Performance By State
+WITH customer_location AS (
+    SELECT DISTINCT
+        customer_unique_id,
+        customer_city,
+        customer_state
+    FROM customers
+)
+
+SELECT
+    cl.customer_state,
+    SUM(cs.total_orders) AS total_orders,
+    ROUND(AVG(cs.avg_delivery_days),2) AS average_delivery_days
+FROM customer_summary cs
+JOIN customer_location cl
+ON cs.customer_unique_id = cl.customer_unique_id
+WHERE cs.total_orders > 0
+GROUP BY cl.customer_state
+ORDER BY average_delivery_days;
