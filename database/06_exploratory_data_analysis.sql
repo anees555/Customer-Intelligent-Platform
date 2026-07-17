@@ -344,3 +344,123 @@ SELECT
 FROM order_summary
 GROUP BY month_name, month_number
 ORDER BY month_number;
+
+
+__________________________________________________________________________________________________________________________________
+
+-- Product Analysis
+-- Analysis 1: Top Selling product
+-- SELECT * FROM product_summary LIMIT 5;
+SELECT
+    product_id,
+    product_category_name,
+    total_units_sold,
+    total_orders,
+    total_revenue
+FROM product_summary
+ORDER BY total_units_sold DESC
+LIMIT 10;
+
+-- Analysis 2: Top Product Categories
+SELECT
+    product_category_name,
+    SUM(total_units_sold) AS units_sold,
+    SUM(total_orders) AS total_orders,
+    SUM(total_revenue) AS total_revenue,
+    ROUND(AVG(avg_review_score),2) AS average_review
+FROM product_summary
+GROUP BY product_category_name
+ORDER BY total_revenue DESC LIMIT 10;
+
+-- Analysis 3: Low performing product
+SELECT
+    product_id,
+    product_category_name,
+    total_units_sold,
+    total_orders,
+    total_revenue
+FROM product_summary
+WHERE total_orders >= 5
+ORDER BY total_revenue
+LIMIT 10;
+
+-- Analysis 4: Revenue Contribution (Pareto Analysis)
+WITH ranked_products AS (
+    SELECT
+        product_id,
+        total_revenue,
+        ROW_NUMBER() OVER(
+            ORDER BY total_revenue DESC
+        ) AS product_rank,
+        COUNT(*) OVER() AS total_products,
+        SUM(total_revenue) OVER() AS total_revenue_all
+    FROM product_summary
+)
+
+SELECT
+    'Top 1%' AS product_group,
+    ROUND(
+        SUM(total_revenue) * 100.0 /
+        MAX(total_revenue_all),
+        2
+    ) AS revenue_percentage
+FROM ranked_products
+WHERE product_rank <= CEIL(total_products * 0.01)
+
+UNION ALL
+
+SELECT
+    'Top 5%',
+    ROUND(
+        SUM(total_revenue) * 100.0 /
+        MAX(total_revenue_all),
+        2
+    )
+FROM ranked_products
+WHERE product_rank <= CEIL(total_products * 0.05)
+
+UNION ALL
+
+SELECT
+    'Top 10%',
+    ROUND(
+        SUM(total_revenue) * 100.0 /
+        MAX(total_revenue_all),
+        2
+    )
+FROM ranked_products
+WHERE product_rank <= CEIL(total_products * 0.10);
+
+-- Analysis 5: Best-rated Product
+SELECT
+    product_id,
+    product_category_name,
+    total_orders,
+    avg_review_score
+FROM product_summary
+WHERE total_orders >= 30
+ORDER BY avg_review_score DESC,
+         total_orders DESC
+LIMIT 10;
+
+-- Analysis 6: Lowest-rated Product
+SELECT
+    product_id,
+    product_category_name,
+    total_orders,
+    avg_review_score
+FROM product_summary
+WHERE total_orders >= 30
+ORDER BY avg_review_score,
+         total_orders DESC
+LIMIT 10;
+
+-- Analysis 7: Category Review Performance
+SELECT
+    product_category_name,
+    COUNT(*) AS total_products,
+    ROUND(AVG(avg_review_score),2) AS average_review_score
+FROM product_summary
+GROUP BY product_category_name
+HAVING COUNT(*) >= 5
+ORDER BY average_review_score DESC;
