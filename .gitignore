@@ -1,6 +1,7 @@
 # Environment
 .customerenv/
 customerenv/
+.env
 
 
 # Python
