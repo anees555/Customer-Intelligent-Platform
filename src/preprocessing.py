@@ -38,3 +38,45 @@ def missing_value_summary(df):
         by="missing_values",
         ascending=False
     )
+
+
+
+# Create an IQR outlier analysis function
+
+def outlier_summary(df, columns):
+    """
+    Generates IQR-based outlier statistics for numerical columns.
+    """
+
+    summary = []
+
+    for col in columns:
+
+        Q1 = df[col].quantile(0.25)
+        Q3 = df[col].quantile(0.75)
+
+        IQR = Q3 - Q1
+
+        lower_bound = Q1 - 1.5 * IQR
+        upper_bound = Q3 + 1.5 * IQR
+
+        outliers = df[
+            (df[col] < lower_bound) |
+            (df[col] > upper_bound)
+        ]
+
+        summary.append({
+            "Column": col,
+            "Q1": round(Q1, 2),
+            "Q3": round(Q3, 2),
+            "IQR": round(IQR, 2),
+            "Lower Bound": round(lower_bound, 2),
+            "Upper Bound": round(upper_bound, 2),
+            "Outlier Count": len(outliers),
+            "Outlier Percentage": round(
+                len(outliers) / len(df) * 100,
+                2
+            )
+        })
+
+    return pd.DataFrame(summary)
