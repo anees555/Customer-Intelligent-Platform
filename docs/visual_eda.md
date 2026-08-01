@@ -1,39 +1,54 @@
 
-### Customer total Spending distribution
+# Visual EDA Summary
 
-Customer spending is highly concentrated. While the majority of customers make relatively small purchases, a small segment of high-value customers contributes disproportionately large transaction amounts. These premium customers represent an important opportunity for retention strategies, personalized recommendations, and loyalty programs.
+This document summarizes the main findings from the customer visual exploratory data analysis in a simple and professional way. The analysis focuses on customer spending, purchase frequency, order value, review scores, delivery time, and the relationship between delivery speed and customer satisfaction.
 
-![alt text](image-1.png)
+## Customer Spending
 
+Customer spending is strongly right-skewed. Most customers spend relatively small amounts, while a small group of high-value customers contributes much larger totals.
 
-### Customer Purchase Frequency
+The average spending is **166.07**, while the median is **107.95**. This gap shows that a few large purchases pull the mean upward. The distribution also has a long tail, with spending ranging from **9.59** to **13,664.08**.
 
-The distribution of customer orders is extremely concentrated around a single purchase. Approximately **96.95%** of customers placed only one order during the observation period, while only a small proportion made repeat purchases.
+From a business perspective, this suggests that revenue depends heavily on a smaller premium customer segment. Retention, loyalty programs, and personalized offers may be especially useful for this group.
 
-The variable exhibits an **extremely right-skewed distribution** (skewness = **11.44**), indicating that a few customers placed multiple orders, with the maximum reaching **16 orders**. Since the first, second, and third quartiles are all equal to one, nearly all repeat purchasers appear as statistical outliers under the IQR method. These observations represent genuine customer behavior and were therefore retained.
+## Purchase Frequency
 
-From a business perspective, the results suggest that the marketplace relies heavily on one-time purchasers, highlighting an opportunity to improve customer retention through loyalty programs, personalized recommendations, and repeat purchase campaigns.
+Customer order counts are highly concentrated around a single order. The average number of orders per customer is **1.03**, the median is **1**, and the 75th percentile is also **1**. The maximum number of orders recorded is **16**.
 
-### Average Order Value Distribution
+This means most customers are one-time buyers, and repeat purchase behavior is limited. Improving customer retention and encouraging repeat orders should be a priority if the business wants to grow long-term customer value.
 
-The average order value exhibits a highly right-skewed distribution (skewness = **9.28**), indicating that while most customers place relatively low-value orders, a small number make exceptionally large purchases. The median order value is **105.78**, whereas the mean is substantially higher at **161.07**, reflecting the influence of high-spending customers.
+## Average Order Value
 
-Approximately **90%** of customers have an average order value below **307.94**, while only the top **1%** exceed **1,069**, highlighting a small premium customer segment that contributes disproportionately to marketplace revenue.
+Average order value shows the same general pattern as total spending: it is strongly right-skewed. The mean is **161.07** and the median is **105.78**, which again shows that a small number of very large orders raise the average.
 
-The distribution closely resembles that of total customer spending because nearly **97%** of customers placed only a single order during the observation period. Consequently, for most customers, average order value is effectively equal to total spending. This insight emphasizes the importance of increasing purchase frequency alongside average order value to drive sustainable revenue growth.
+The 90th percentile is **307.94** and the 99th percentile is **1,069.38**, confirming that most customers place moderate-value orders, while a small premium group spends much more.
 
-### Average Review Score Distribution
+Because most customers place only one order, average order value is very close to total spending for most of the dataset.
 
-Customer review scores exhibit a **negatively skewed distribution** (skewness = **-1.39**), indicating that ratings are heavily concentrated toward the maximum value of **5**. The median and mode are both **5**, while the mean is slightly lower at **4.10**, reflecting the influence of a relatively small number of low ratings.
+## Average Review Score
 
-The percentile analysis shows that at least **50%** of customers have an average review score of **5**, and even the 75th, 90th, 95th, and 99th percentiles remain at the maximum rating. This demonstrates consistently high customer satisfaction across the marketplace.
+Customer review scores are concentrated at the top end of the scale. The mean review score is **4.10**, while the median and mode are both **5**. The skewness is **-1.39**, which indicates that the distribution leans toward higher ratings.
 
-From a business perspective, the results suggest that most customers are satisfied with their overall shopping experience. Although low ratings are comparatively uncommon, they remain valuable indicators of potential issues related to product quality, delivery performance, or seller service, making review scores an important feature for customer retention and predictive modeling.
+The quartiles show the same pattern: at least 75% of customers have an average review score of **5**. This suggests that customer satisfaction is generally high across the marketplace.
 
-### Average Delivery Days Distribution
+Although low ratings are uncommon, they are still important because they may point to issues with product quality, seller service, or delivery performance.
 
-The average delivery time exhibits a **strongly positively skewed distribution** (skewness = **3.88**), indicating that while most customers receive their orders within a relatively short period, a small number experience substantially longer delivery times. The median delivery time is **10 days**, whereas the mean is **12.51 days**, reflecting the influence of these delayed deliveries.
+## Average Delivery Days
 
-The most common delivery duration is **7 days**, suggesting that one-week delivery is the standard customer experience. Percentile analysis shows that **75%** of customers receive their orders within **16 days**, **90%** within **23 days**, and **99%** within **46 days**.
+Delivery time is positively skewed. The average delivery time is **12.51 days**, the median is **10 days**, and the most common value is **7 days**. Most customers receive their orders within a reasonable time, but some cases take much longer.
 
-Although a few customers experienced exceptionally long delivery times, reaching up to **210 days**, these records represent genuine business events and were retained for analysis. Overall, the results indicate that delivery performance is satisfactory for most customers, while a relatively small number of extreme delays present opportunities for logistics optimization and improved customer satisfaction.
+The 75th percentile is **16 days**, the 90th percentile is **23 days**, and the 99th percentile is **46 days**. The maximum delivery time reaches **210 days**, which indicates a small number of extreme delays.
+
+Overall, the delivery process works well for most customers, but there is still room to reduce late deliveries and improve consistency.
+
+## Delivery Time vs. Review Score
+
+The scatter plot and fitted line show a moderate negative relationship between delivery time and review score. The correlation is **-0.335**, which means longer delivery times are generally associated with lower review scores.
+
+The relationship is not perfect, so delivery time is not the only factor affecting reviews. Product quality, packaging, seller service, and customer expectations may also influence how customers rate their experience.
+
+The main business takeaway is clear: improving delivery speed may help improve customer satisfaction.
+
+## Overall Takeaway
+
+The visual analysis shows a customer base with low purchase frequency, high satisfaction, and a small number of very valuable customers. The strongest improvement opportunities are increasing repeat purchases and reducing delivery delays, both of which could support better revenue growth and customer loyalty.
