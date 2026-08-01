@@ -52,3 +52,57 @@ The main business takeaway is clear: improving delivery speed may help improve c
 ## Overall Takeaway
 
 The visual analysis shows a customer base with low purchase frequency, high satisfaction, and a small number of very valuable customers. The strongest improvement opportunities are increasing repeat purchases and reducing delivery delays, both of which could support better revenue growth and customer loyalty.
+
+_____________________________________________________________________________________________________________________
+
+## Order Status Distribution
+
+### Objective
+
+Analyze the distribution of order statuses to evaluate the operational performance of the e-commerce platform.
+
+### Key Findings
+
+- **97.78%** of all orders were successfully delivered, indicating a highly efficient fulfillment process.
+- Only **0.47%** of orders were canceled, suggesting a low order failure rate.
+- Approximately **1.12%** of orders remained in the shipped state, reflecting orders that were still in transit at the time of data collection.
+- The remaining statuses (`approved`, `processing`, `invoiced`, and `unavailable`) accounted for less than 1% of total orders, representing temporary processing stages or exceptional cases.
+
+### Business Insight
+
+The overwhelming proportion of delivered orders demonstrates strong operational performance and provides confidence in the quality of subsequent analyses involving delivery times, customer satisfaction, and sales performance.
+
+## Monthly Order Trend
+
+### Objective
+
+Analyze how monthly order volume changed over time to identify business growth patterns and seasonal fluctuations.
+
+### Key Findings
+
+- Monthly order volume increased steadily throughout 2017, indicating strong business growth and increasing customer adoption.
+- The highest order volume occurred in **November 2017**, likely influenced by the annual Black Friday shopping event.
+- During 2018, monthly orders stabilized at approximately **6,000–7,200 orders**, suggesting that the marketplace reached a mature and consistent level of demand.
+- The sharp decline observed in the final month of the dataset was excluded from interpretation because it represents an incomplete data collection period rather than an actual decrease in business activity.
+
+### Business Insight
+
+The marketplace experienced rapid expansion during 2017 before reaching a stable level of activity in 2018. The noticeable spike in November highlights the impact of seasonal promotional events on customer purchasing behavior, emphasizing the importance of demand forecasting and inventory planning during peak shopping periods.
+
+## Delivery Performance Analysis
+
+### Objective
+
+Evaluate logistics performance by comparing the actual delivery date with the estimated delivery date.
+
+### Key Findings
+
+- **91.89%** of delivered orders arrived **before** the estimated delivery date.
+- **1.34%** of orders were delivered **exactly on time**.
+- **6.77%** of orders were delivered **after** the estimated delivery date.
+
+### Business Insight
+
+The high proportion of early deliveries indicates strong fulfillment performance and suggests that estimated delivery dates were generally conservative. Only a small percentage of orders experienced delivery delays, demonstrating a reliable logistics process.
+
+These results are particularly important because delivery performance directly affects customer experience and is associated with customer review scores, making it a key operational performance indicator.
