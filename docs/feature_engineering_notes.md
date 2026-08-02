@@ -74,3 +74,57 @@ Customers with higher freight ratios may be more sensitive to shipping costs and
 
 - Customer Segmentation
 - Marketing and Pricing Analysis
+
+_____________________________________________________________________________________________________________________________________________
+
+## Product Feature Engineering
+
+### Feature: Revenue per Order (`revenue_per_order`)
+
+**Definition**
+
+Average revenue generated each time a product is purchased.
+
+**Formula**
+
+`Revenue per Order = Total Revenue / Total Orders`
+
+**Purpose**
+
+Measures the monetary value of each product purchase, helping distinguish high-value products from products that generate revenue mainly through high sales volume.
+
+**Business Importance**
+
+Useful for identifying premium products, evaluating product profitability, and supporting product recommendation and pricing strategies.
+
+**Supports**
+
+- Product Recommendation
+- Product Performance Analysis
+- Business Dashboard
+
+_____________________________________________________________________________________________________________________________________________
+
+### Feature: Revenue per Unit (`revenue_per_unit`)
+
+**Definition**
+
+Average revenue generated for each unit sold.
+
+**Formula**
+
+`Revenue per Unit = Total Revenue / Total Units Sold`
+
+**Purpose**
+
+Measures the realized monetary value of each unit sold, providing an indicator of product value beyond sales volume.
+
+**Business Importance**
+
+Useful for identifying premium products, comparing product pricing performance, and supporting recommendation and profitability analysis.
+
+**Supports**
+
+- Product Recommendation
+- Pricing Analysis
+- Business Dashboard
