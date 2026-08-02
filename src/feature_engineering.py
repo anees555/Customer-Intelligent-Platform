@@ -79,3 +79,41 @@ def engineer_product_features(feature_df):
     ).astype(int)
 
     return feature_df
+
+# ----------------------------------------------------------------------------------------------------------------------
+
+
+def engineer_seller_features(feature_df):
+
+    # Feature 1: Revenue per Order
+    feature_df["revenue_per_order"] = (
+        feature_df["total_revenue"]
+        / feature_df["total_orders"]
+    )
+
+    # Feature 2: Freight Ratio
+    feature_df["freight_ratio"] = (
+        feature_df["total_freight"]
+        / feature_df["total_revenue"]
+    )
+
+    # Feature 3: Premium Seller
+    premium_threshold = feature_df["avg_product_price"].quantile(0.80)
+
+    feature_df["premium_seller"] = (
+        feature_df["avg_product_price"] >= premium_threshold
+    ).astype(int)
+
+    # Feature 4: High Rating Seller
+    feature_df["high_rating_seller"] = (
+        feature_df["avg_review_score"] >= 4.5
+    ).astype(int)
+
+    # Feature 5: Fast Delivery Seller
+    delivery_threshold = feature_df["avg_delivery_days"].median()
+
+    feature_df["fast_delivery_seller"] = (
+        feature_df["avg_delivery_days"] <= delivery_threshold
+    ).astype(int)
+
+    return feature_df
