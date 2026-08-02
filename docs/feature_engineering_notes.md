@@ -76,6 +76,7 @@ Customers with higher freight ratios may be more sensitive to shipping costs and
 - Marketing and Pricing Analysis
 
 _____________________________________________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________________________________________
 
 ## Product Feature Engineering
 
@@ -105,26 +106,145 @@ Useful for identifying premium products, evaluating product profitability, and s
 
 _____________________________________________________________________________________________________________________________________________
 
-### Feature: Revenue per Unit (`revenue_per_unit`)
+### Feature: Freight Ratio (`freight_ratio`)
 
 **Definition**
 
-Average revenue generated for each unit sold.
+Proportion of product revenue spent on freight.
 
 **Formula**
 
-`Revenue per Unit = Total Revenue / Total Units Sold`
+`Freight Ratio = Total Freight / Total Revenue`
 
 **Purpose**
 
-Measures the realized monetary value of each unit sold, providing an indicator of product value beyond sales volume.
+Measures shipping cost relative to product revenue, helping identify products with high logistics costs.
 
 **Business Importance**
 
-Useful for identifying premium products, comparing product pricing performance, and supporting recommendation and profitability analysis.
+Useful for profitability analysis, pricing decisions, and logistics optimization.
+
+**Supports**
+
+- Business Dashboard
+- Profitability Analysis
+- Logistics Performance
+
+_____________________________________________________________________________________________________________________________________________
+
+### Feature: Popularity Score (`popularity_score`)
+
+**Definition**
+
+Normalized score combining total orders and total units sold.
+
+**Formula**
+
+`Popularity Score = 0.5 × Normalized Orders + 0.5 × Normalized Units Sold`
+
+**Purpose**
+
+Measures overall product demand by considering both purchase frequency and sales volume.
+
+**Business Importance**
+
+Useful for identifying popular products for recommendation systems and business reporting.
 
 **Supports**
 
 - Product Recommendation
-- Pricing Analysis
+- Product Performance Analysis
 - Business Dashboard
+
+_____________________________________________________________________________________________________________________________________________
+
+### Feature: Premium Product (`premium_product`)
+
+**Definition**
+
+Binary indicator identifying products with relatively high average selling prices.
+
+**Business Rule**
+
+Products with an average selling price greater than or equal to the **80th percentile (179.99)** are classified as premium products.
+
+- `1` → Premium Product
+- `0` → Standard Product
+
+**Purpose**
+
+Separates premium products from standard products based on market pricing, enabling analysis of high-value product performance.
+
+**Business Importance**
+
+This feature supports premium product identification, pricing strategy analysis, product recommendation, and executive dashboards.
+
+**Supports**
+
+- Product Recommendation
+- Product Performance Analysis
+- Business Dashboard
+
+_____________________________________________________________________________________________________________________________________________
+
+### Feature: Bestseller Flag (`bestseller_flag`)
+
+**Definition**
+
+Binary indicator identifying products with exceptionally high sales volume.
+
+**Business Rule**
+
+Products with total units sold greater than or equal to the **90th percentile (6 units)** are classified as bestsellers.
+
+- `1` → Bestseller
+- `0` → Standard Product
+
+**Purpose**
+
+Highlights products with consistently strong market demand, regardless of their selling price.
+
+**Business Importance**
+
+Useful for identifying high-demand products, supporting recommendation systems, inventory planning, and sales performance analysis.
+
+**Supports**
+
+- Product Recommendation
+- Sales Forecasting
+- Product Performance Analysis
+- Business Dashboard
+
+_____________________________________________________________________________________________________________________________________________
+
+### Feature: High Rating Product (`high_rating_product`)
+
+**Definition**
+
+Binary indicator identifying products with consistently high customer satisfaction.
+
+**Business Rule**
+
+Products with an average review score greater than or equal to **4.5** are classified as high-rating products.
+
+- `1` → High Rating Product
+- `0` → Standard Rating Product
+
+**Purpose**
+
+Highlights products that consistently receive excellent customer feedback.
+
+**Business Importance**
+
+Useful for product recommendation, quality monitoring, and identifying products that deliver a positive customer experience.
+
+**Supports**
+
+- Product Recommendation
+- Product Quality Analysis
+- Business Dashboard
+
+_____________________________________________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________________________________________
+
+## Seller Feature Engineering

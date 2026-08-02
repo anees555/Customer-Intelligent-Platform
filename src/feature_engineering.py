@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 # customer feature 1: Recency
-def customer_features(feature_df):
+def engineer_customer_features(feature_df):
     reference_date = feature_df["last_purchase"].max()
     print(f"Reference data: {reference_date}")
 
@@ -33,6 +33,49 @@ def customer_features(feature_df):
     # create RFM score
     feature_df["RFM_score"] = (feature_df["R_score"].astype(str) + feature_df["F_score"].astype(str) + feature_df["M_score"].astype(str))
 
-    
+
+
+    return feature_df
+
+
+# -----------------------------------------------------------------------------------------------------------------------------------
+
+# Product Feature Engineering
+def engineer_product_features(feature_df):
+
+    # Feature 1: Revenue per Order
+    feature_df["revenue_per_order"] = (
+        feature_df["total_revenue"] / feature_df["total_orders"]
+    )
+
+    # Feature 2: Freight Ratio
+    feature_df["freight_ratio"] = (
+        feature_df["total_freight"] / feature_df["total_revenue"]
+    )
+
+    # Feature 3: Popularity Score (Percentile-based)
+    feature_df["popularity_score"] = (
+        feature_df["total_orders"].rank(pct=True) * 0.5 +
+        feature_df["total_units_sold"].rank(pct=True) * 0.5
+    )
+
+    # Feature 4: Premium Product (Top 20% by average price)
+    premium_threshold = feature_df["avg_price"].quantile(0.80)
+
+    feature_df["premium_product"] = (
+        feature_df["avg_price"] >= premium_threshold
+    ).astype(int)
+
+    # Feature 5: Bestseller Product (Top 10% by units sold)
+    bestseller_threshold = feature_df["total_units_sold"].quantile(0.90)
+
+    feature_df["bestseller_flag"] = (
+        feature_df["total_units_sold"] >= bestseller_threshold
+    ).astype(int)
+
+    # Feature 6: High Rating Product
+    feature_df["high_rating_product"] = (
+        feature_df["avg_review_score"] >= 4.5
+    ).astype(int)
 
     return feature_df
