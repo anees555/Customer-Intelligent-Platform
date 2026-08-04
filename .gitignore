@@ -2,14 +2,28 @@
 .customerenv/
 customerenv/
 .env
+.venv/
+venv/
+env/
 
 
 # Python
 __pycache__/
 *.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+*.log
+*.egg-info/
+build/
+dist/
 
 # Jupyter
 .ipynb_checkpoints/
+.jupyter/
 
 # Data
 data/raw/

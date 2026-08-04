@@ -1,242 +1,117 @@
 # Customer Intelligence Platform
 
-## Project Status
+Customer Intelligence Platform is an end-to-end analytics project built on the Olist Brazilian E-commerce dataset. The goal is to turn raw transactional data into clean analytical datasets, customer segments, and business-ready insights that can support decision-making across marketing, operations, and product teams.
 
-**Current Phase:** Data Preparation & Analytical Data Modeling ✅
+The project follows the CRISP-DM workflow and is organized so each stage is easy to review independently, from database design through segmentation analysis.
 
-This project builds an end-to-end Customer Intelligence Platform using the Olist Brazilian E-commerce dataset. The objective is to transform raw transactional data into analytical datasets that support business intelligence, customer analytics, machine learning, and interactive dashboards.
+## Current Status
 
-The project follows the **CRISP-DM** methodology to simulate a real-world data engineering and data science workflow.
+Current focus: customer segmentation and business interpretation.
 
----
-
-## Current Progress
-
-- [x] Business Understanding
-- [x] Dataset Exploration
-- [x] Relational Database Design
-- [x] PostgreSQL Database Implementation
-- [x] Data Import
-- [x] Data Understanding & Profiling
-- [x] Data Validation
-- [x] Data Preparation (Analytical Views)
-- [x] Exploratory Data Analysis (EDA)
-- [ ] Feature Engineering
-- [ ] Customer Segmentation
-- [ ] Machine Learning
-- [ ] Dashboard Development
-- [ ] Deployment
-
----
-
-## CRISP-DM Workflow
-
-Business Understanding  ✅
-        ↓
-Data Understanding      ✅
-        ↓
-Data Preparation        ✅
-        ↓
-Modeling                ⏳
-        ↓
-Evaluation              ⏳
-        ↓
-Deployment              ⏳
+Completed work includes database setup, data understanding, analytical view creation, exploratory analysis, feature engineering, and K-Means segmentation.
 
 ## Project Structure
 
 ```text
 Customer-Intelligence-Platform/
-
-│
 ├── data/
-│   └── raw/
-│       └── olist-ecommerce-public-dataset/
-│
-├── sql/
-│   ├── 01_create_tables.sql
-│   ├── 02_constraints.sql
-│   ├── 03_data_profiling.sql
-│   ├── 04_data_validation.sql
+│   ├── raw/
+│   │   └── olist-ecommerce-public-dataset/
+│   └── processed/
+├── database/
+│   ├── 01_create_database.sql
+│   ├── 02_create_tables.sql
+│   ├── 03_data_understanding.sql
+│   ├── 04_data_profiling.sql
 │   ├── 05_data_preparation.sql
+│   ├── 06_exploratory_data_analysis.sql
 │   └── views/
-│       ├── order_summary.sql
 │       ├── customer_summary.sql
+│       ├── order_summary.sql
 │       ├── product_summary.sql
 │       └── seller_summary.sql
-│
 ├── docs/
-│   ├── database_schema.md
+│   ├── Project_proposal.md
+│   ├── business_question.md
+│   ├── data_preparation.md
+│   ├── data_preprocessing.md
 │   ├── data_profiling.md
-│   └── data_preparation.md
-│
+│   ├── exploratory_data_analysis_sql.md
+│   ├── feature_engineering_notes.md
+│   └── visual_eda.md
+├── model/
+│   └── customer_segmentation/
+│       ├── kmeans_customer_segmentation.pkl
+│       └── robust_scaler.pkl
 ├── notebooks/
-├── dashboards/
-├── models/
+│   ├── 01_data_loading.ipynb
+│   ├── 02_data_profiling.ipynb
+│   ├── 03_data_preprocessing.ipynb
+│   ├── 04_visual_eda.ipynb
+│   ├── 05_model_dataset_prep.ipynb
+│   ├── 01_customer_segmentation/
+│   │   ├── 01_data_preparation.ipynb
+│   │   ├── 02_kmeans_model.ipynb
+│   │   └── 03_cluster_analysis.ipynb
+│   └── feature_engineering/
+│       ├── 01_customer_features.ipynb
+│       ├── 02_product_features.ipynb
+│       └── 03_seller_features.ipynb
 ├── reports/
+│   └── customer_segmentation_business_interpretation.md
+├── src/
+│   ├── config.py
+│   ├── database.py
+│   ├── data_loader.py
+│   ├── feature_engineering.py
+│   ├── preprocessing.py
+│   └── utils.py
+├── tests/
+│   └── test_database_connection.py
+├── requirements.txt
+├── .gitignore
 └── README.md
 ```
 
----
+## Workflow Summary
 
-## Database Design
+The project starts with the raw Olist dataset, loads it into PostgreSQL, and creates clean analytical views for orders, customers, products, and sellers. From there, the notebooks under `notebooks/` build feature tables and run customer segmentation with K-Means. The final cluster analysis translates model output into practical business segments.
 
-The PostgreSQL database consists of the following normalized tables:
+## Key Deliverables
 
-- customers
-- orders
-- order_items
-- products
-- product_categories
-- sellers
-- order_payments
-- order_reviews
-- geolocation
+- Database scripts and analytical views in `database/`
+- Documentation and business notes in `docs/`
+- Feature engineering and analysis notebooks in `notebooks/`
+- Saved segmentation artifacts in `model/customer_segmentation/`
+- Written business interpretation in `reports/customer_segmentation_business_interpretation.md`
+- Reusable Python utilities in `src/`
+- Connection smoke test in `tests/test_database_connection.py`
 
-The schema uses primary keys, foreign keys, composite keys, and normalization principles to maintain referential integrity.
+## Customer Segmentation Outcome
 
----
+The segmentation work produced five clear customer groups:
 
-## Data Profiling
+- Premium Customers
+- Loyal Customers
+- Regular Customers
+- Budget Customers
+- Dissatisfied Customers
 
-After importing the data, each table was profiled to understand its characteristics and quality.
+These segments are designed to support different business actions. For example, premium customers should be retained with personalized treatment, loyal customers should be rewarded, budget customers should be targeted with value offers, and dissatisfied customers should be prioritized for service and delivery improvement.
 
-The profiling process included:
+## Data Notes
 
-- Dataset overview
-- Row counts
-- Missing value analysis
-- Duplicate detection
-- Referential integrity validation
-- Numerical summaries
-- Distribution analysis
-- Business-oriented observations
+- Processed datasets are stored in `data/processed/`.
+- Raw source data is kept in `data/raw/`.
+- The local Python environment is managed in `customerenv/`.
+- Environment values are read from `.env` through `src/config.py`.
 
-The findings are documented in **`docs/data_profiling.md`**.
+## Run and Review
 
----
+1. Load the database and generate the analytical views using the SQL scripts in `database/`.
+2. Open the notebooks in `notebooks/` to review profiling, feature engineering, and segmentation.
+3. Review the final business interpretation in `reports/customer_segmentation_business_interpretation.md`.
 
-## Data Preparation
+## Purpose
 
-To support business analytics, several analytical views were created:
-
-- **order_summary** – Order-level analytical dataset
-- **customer_summary** – Customer-level aggregated metrics
-- **product_summary** – Product performance metrics
-- **seller_summary** – Seller performance metrics
-
-These views simplify downstream analytics while preserving the normalized transactional database.
-
-The implementation is documented in **`docs/data_preparation.md`**.
-
----
-
-## SQL Exploratory Data Analysis
-
-A comprehensive SQL-based exploratory analysis was performed to answer key business questions across multiple business domains.
-
-### Executive KPIs
-
-- Total Customers
-- Total Orders
-- Total Revenue
-- Average Order Value
-- Average Delivery Time
-- Average Review Score
-- Repeat Customer Rate
-
-### Customer Analysis
-
-- Customer spending analysis
-- Top customers
-- Pareto analysis
-- Purchase frequency
-- Customer lifetime analysis
-- Customer recency analysis
-
-### Sales Analysis
-
-- Monthly revenue trend
-- Average order value trend
-- Payment method analysis
-- Weekday sales analysis
-- Seasonality analysis
-- Month-over-month revenue growth
-
-### Product Analysis
-
-- Top-selling products
-- Top product categories
-- Low-performing products
-- Product revenue contribution
-- Product review analysis
-
-### Seller Analysis
-
-- Best-performing sellers
-- Seller revenue contribution
-- Seller review performance
-- Seller delivery performance
-
-### Geographic Analysis
-
-- Revenue by state
-- Revenue by city
-- Customer distribution
-- Seller distribution
-- Delivery performance by state
-
----
-
-
-## Data Quality Challenges
-
-During database implementation, several real-world data quality issues were identified and resolved:
-
-- Missing product category translations (`pc_gamer` and `portateis_cozinha_e_preparadores_de_alimentos`).
-- Duplicate records in the `order_reviews` dataset, requiring a revised primary key strategy.
-- The `geolocation` dataset lacked a natural primary key, so a surrogate `BIGSERIAL` key was introduced.
-- Referential integrity issues were identified and resolved before analytical processing.
-
----
-
-## Technologies Used
-
-- PostgreSQL
-- SQL
-- pgAdmin
-- Git & GitHub
-
-**Upcoming**
-
-- Python
-- Pandas
-- Scikit-learn
-- Power BI
-- Jupyter Notebook
-
----
-
-## Next Milestone
-
-The next phase focuses on **Feature Engineering** using Python (Pandas). New analytical features will be created for customer segmentation, predictive modeling, and machine learning tasks such as customer lifetime value estimation, RFM analysis, churn prediction, and sales forecasting.
-
----
-
-## Dataset
-
-This project uses the **Olist Brazilian E-commerce Public Dataset**.
-
-1. Download the dataset from Kaggle.
-2. Extract the files.
-3. Place them in:
-
-```text
-data/raw/olist-ecommerce-public-dataset/
-```
-
----
-
-## Project Goal
-
-Build a production-style Customer Intelligence Platform by following the complete CRISP-DM lifecycle, from raw transactional data to business insights, predictive models, and interactive dashboards.
+This repository is structured to be easy to follow for future reviewers. Each folder has a clear responsibility: raw data in one place, SQL logic in one place, notebooks in one place, saved models in one place, and written insights in one place.
