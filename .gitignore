@@ -30,7 +30,7 @@ data/raw/
 data/processed/
 
 # Models
-models/
+model/
 
 # MLflow
 mlruns/
