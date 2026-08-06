@@ -64,12 +64,9 @@ More specifically, the project aims to:
 6. Predict customer churn using machine learning
 7. Estimate Customer Lifetime Value (CLV)
 8. Forecast future sales trends
-9. Build a product recommendation system
-10. Explain model predictions using Explainable AI (XAI)
-11. Deliver interactive dashboards for business users
-12. Deploy trained models through REST APIs
-13. Implement experiment tracking and model monitoring
-14. Demonstrate a full, production-level data science workflow
+9. Deliver interactive dashboards for business users
+10. Deploy trained models through REST APIs
+11. Demonstrate a full, production-level data science workflow
 
 ---
 
@@ -85,17 +82,9 @@ More specifically, the project aims to:
 - Statistical analysis
 - Feature engineering
 - Machine learning model development and evaluation
-- Explainable AI
 - Interactive dashboard development
-- API deployment
-- Experiment tracking
-- Containerization
 - Documentation
 
-**Out of scope:**
-
-- Live/real-time transaction processing
-- Real-time recommendation serving
 
 This is a historical-data project by design — the dataset is static, so the focus stays on batch analytics and predictive modeling rather than streaming infrastructure.
 
@@ -258,15 +247,6 @@ The platform should be able to:
 - Seasonal analysis
 - Revenue forecasting
 
-**Recommendation Engine**
-- Similar product recommendations
-- Frequently-bought-together analysis
-- Personalized recommendations
-
-**Explainable AI**
-- SHAP-based analysis
-- Feature importance ranking
-- Prediction-level explanations
 
 **Business Dashboard**
 - KPI tracking
@@ -287,12 +267,9 @@ The platform should be able to:
 | Data Processing | Pandas, NumPy |
 | Visualization | Matplotlib, Plotly |
 | Machine Learning | Scikit-learn |
-| Gradient Boosting | XGBoost, LightGBM |
-| Explainability | SHAP |
 | Experiment Tracking | MLflow |
 | API | FastAPI |
-| Dashboard | Streamlit |
-| Containerization | Docker |
+| Dashboard | PowerBI |
 | Version Control | Git & GitHub |
 
 ---
@@ -307,9 +284,6 @@ The project follows **CRISP-DM** (Cross-Industry Standard Process for Data Minin
 4. **Exploratory Data Analysis** — Study customer behavior, sales patterns, payment preferences, and product performance
 5. **Model Development** — Build and compare models across classification, regression, clustering, recommendation, and forecasting tasks
 6. **Model Evaluation** — Assess models using metrics such as F1-score, ROC-AUC, RMSE, MAE, Silhouette Score, and business-oriented KPIs
-7. **Explainability** — Interpret predictions using SHAP values and feature importance
-8. **Deployment** — Serve trained models via REST APIs and expose them through an interactive dashboard
-9. **Monitoring & Maintenance** — Track experiments, monitor performance over time, detect data drift, and support retraining
 
 ---
 
@@ -328,16 +302,6 @@ By the end of this project, the platform should be able to:
 
 ---
 
-## Future Enhancements
-
-- Real-time streaming analytics
-- Deep learning–based recommendation systems
-- LLM integration for natural-language business insights
-- Customer support chatbot
-- Cloud-native deployment
-- Automated model retraining pipelines
-- MLOps integration with Kubernetes
-- Multi-language dashboard support
 
 ---
 
@@ -351,7 +315,6 @@ To keep this feeling like a real software product rather than a one-off ML exper
 - Data Dictionary
 - Feature Engineering Guide
 - Model Evaluation Report
-- API Documentation
 - Deployment Guide
 
 Keeping these documents current alongside the codebase not only keeps the project organized — it's also what makes it stand out to employers and graduate admissions committees.
@@ -360,6 +323,6 @@ Keeping these documents current alongside the codebase not only keeps the projec
 
 ## Conclusion
 
-The Customer Intelligence Platform for E-commerce is meant to be a full, realistic demonstration of what modern data science looks like inside an e-commerce business — from raw relational data all the way through to deployed, explainable, monitored models. By tying together data engineering, EDA, machine learning, visualization, explainability, and deployment in one place, it captures the complete lifecycle of an industrial-grade data science solution.
+The Customer Intelligence Platform for E-commerce is meant to be a full, realistic demonstration of what modern data science looks like inside an e-commerce business — from raw relational data all the way through to deployed, explainable, monitored models. By tying together data engineering, EDA, machine learning, visualization, explainability in one place, it captures the complete lifecycle of an industrial-grade data science solution.
 
 Beyond the models themselves, the platform is built to create real business value: helping teams understand their customers better, sharpen marketing strategy, improve retention, quantify long-term customer value, and make decisions backed by evidence rather than guesswork. As a portfolio piece, it also demonstrates hands-on proficiency across SQL, statistics, feature engineering, machine learning, API development, and production-oriented engineering practice.
