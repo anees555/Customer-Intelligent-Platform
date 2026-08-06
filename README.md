@@ -1,16 +1,33 @@
 # Customer Intelligence Platform
 
-Customer Intelligence Platform is an end-to-end analytics project built on the Olist Brazilian E-commerce dataset. The goal is to turn raw transactional data into clean analytical datasets, customer segments, and business-ready insights that can support decision-making across marketing, operations, and product teams.
+Customer Intelligence Platform is an end-to-end analytics project built using the Olist Brazilian E-commerce Public Dataset. The objective is to transform raw transactional data into actionable business insights through SQL, Python, statistical analysis, machine learning, and time series forecasting.
 
-The project follows the CRISP-DM workflow and is organized so each stage is easy to review independently, from database design through segmentation analysis.
+The project follows the **CRISP-DM** methodology and is organized into independent analytical modules, allowing each stage—from database design to predictive analytics—to be reviewed separately.
 
-## Current Status
+---
 
-Current focus: customer segmentation and business interpretation.
+# Current Status
 
-Completed work includes database setup, data understanding, analytical view creation, exploratory analysis, feature engineering, and K-Means segmentation.
+**Project Status:** Major analytics modules completed.
 
-## Project Structure
+Completed modules include:
+
+- ✅ PostgreSQL Database Design & Implementation
+- ✅ Data Understanding & Profiling
+- ✅ Data Preparation & SQL Analytics
+- ✅ Exploratory Data Analysis (SQL & Python)
+- ✅ Feature Engineering
+- ✅ Customer Segmentation (K-Means)
+- ✅ Sales Forecasting (Time Series using SARIMA)
+- ✅ Business Interpretation & Reporting
+
+Archived experimental work:
+
+- Customer Churn Prediction (documented with limitations and stored under `notebooks/archives/customer_churn_ML/`)
+
+---
+
+# Project Structure
 
 ```text
 Customer-Intelligence-Platform/
@@ -18,6 +35,17 @@ Customer-Intelligence-Platform/
 │   ├── raw/
 │   │   └── olist-ecommerce-public-dataset/
 │   └── processed/
+│       ├── customer_features.csv
+│       ├── customer_summary_clean.csv
+│       ├── order_summary_clean.csv
+│       ├── product_features.csv
+│       ├── product_summary_clean.csv
+│       ├── seller_features.csv
+│       ├── seller_summary_clean.csv
+│       ├── customer_churn_data/
+│       ├── Sales_forcasting_data/
+│       └── segments_data/
+│
 ├── database/
 │   ├── 01_create_database.sql
 │   ├── 02_create_tables.sql
@@ -30,6 +58,7 @@ Customer-Intelligence-Platform/
 │       ├── order_summary.sql
 │       ├── product_summary.sql
 │       └── seller_summary.sql
+│
 ├── docs/
 │   ├── Project_proposal.md
 │   ├── business_question.md
@@ -39,26 +68,55 @@ Customer-Intelligence-Platform/
 │   ├── exploratory_data_analysis_sql.md
 │   ├── feature_engineering_notes.md
 │   └── visual_eda.md
+│
 ├── model/
-│   └── customer_segmentation/
-│       ├── kmeans_customer_segmentation.pkl
-│       └── robust_scaler.pkl
+│   ├── churn_prediction/
+│   │   ├── decision_tree.pkl
+│   │   ├── logistic_regression.pkl
+│   │   ├── random_forest.pkl
+│   │   ├── robust_scaler.pkl
+│   │   └── xgboost.pkl
+│   ├── customer_segmentation/
+│   │   ├── kmeans_customer_segmentation.pkl
+│   │   └── robust_scaler.pkl
+│   └── final_sarima.pkl
+│
 ├── notebooks/
 │   ├── 01_data_loading.ipynb
 │   ├── 02_data_profiling.ipynb
 │   ├── 03_data_preprocessing.ipynb
 │   ├── 04_visual_eda.ipynb
 │   ├── 05_model_dataset_prep.ipynb
+│   │
+│   ├── archives/
+│   │   └── customer_churn_ML/
+│   │       ├── 01_data_preparation.ipynb
+│   │       ├── 02_model_training.ipynb
+│   │       ├── 03_model_evaluation.ipynb
+│   │       └── README.md
+│   │
+│   |
+│   │
 │   ├── 01_customer_segmentation/
 │   │   ├── 01_data_preparation.ipynb
 │   │   ├── 02_kmeans_model.ipynb
 │   │   └── 03_cluster_analysis.ipynb
-│   └── feature_engineering/
-│       ├── 01_customer_features.ipynb
-│       ├── 02_product_features.ipynb
-│       └── 03_seller_features.ipynb
+│   │
+│   ├── feature_engineering/
+│   │   ├── 01_customer_features.ipynb
+│   │   ├── 02_product_features.ipynb
+│   │   └── 03_seller_features.ipynb
+│   │
+│   └── Sales_Forcasting/
+│       ├── 01_data_preparation.ipynb
+│       ├── 02_exploratory_time_series_analyis.ipynb
+│       ├── 03_model_training.ipynb
+│       ├── 04_model_evaluation.ipynb
+│       └── README.md
+│
 ├── reports/
 │   └── customer_segmentation_business_interpretation.md
+│
 ├── src/
 │   ├── config.py
 │   ├── database.py
@@ -66,30 +124,39 @@ Customer-Intelligence-Platform/
 │   ├── feature_engineering.py
 │   ├── preprocessing.py
 │   └── utils.py
+│
 ├── tests/
 │   └── test_database_connection.py
+│
 ├── requirements.txt
-├── .gitignore
 └── README.md
 ```
 
-## Workflow Summary
+---
 
-The project starts with the raw Olist dataset, loads it into PostgreSQL, and creates clean analytical views for orders, customers, products, and sellers. From there, the notebooks under `notebooks/` build feature tables and run customer segmentation with K-Means. The final cluster analysis translates model output into practical business segments.
+# Workflow Summary
 
-## Key Deliverables
+The project begins with the raw Olist transactional dataset, which is imported into PostgreSQL. Analytical views are then created to simplify customer, order, product, and seller analysis.
 
-- Database scripts and analytical views in `database/`
-- Documentation and business notes in `docs/`
-- Feature engineering and analysis notebooks in `notebooks/`
-- Saved segmentation artifacts in `model/customer_segmentation/`
-- Written business interpretation in `reports/customer_segmentation_business_interpretation.md`
-- Reusable Python utilities in `src/`
-- Connection smoke test in `tests/test_database_connection.py`
+Using these curated datasets, multiple analytical modules are developed independently:
 
-## Customer Segmentation Outcome
+- SQL-based exploratory analysis
+- Customer feature engineering
+- Customer segmentation
+- Statistical sales forecasting
+- Business interpretation
 
-The segmentation work produced five clear customer groups:
+Each module produces reusable datasets, trained models, and business-oriented insights.
+
+---
+
+# Completed Analytics Modules
+
+## 1. Customer Segmentation
+
+Customer-level behavioral features were engineered from transactional data and standardized before applying K-Means clustering.
+
+The final solution produced five actionable customer segments:
 
 - Premium Customers
 - Loyal Customers
@@ -97,21 +164,110 @@ The segmentation work produced five clear customer groups:
 - Budget Customers
 - Dissatisfied Customers
 
-These segments are designed to support different business actions. For example, premium customers should be retained with personalized treatment, loyal customers should be rewarded, budget customers should be targeted with value offers, and dissatisfied customers should be prioritized for service and delivery improvement.
+Each segment was interpreted from a business perspective with recommended marketing and retention strategies.
 
-## Data Notes
+---
 
-- Processed datasets are stored in `data/processed/`.
-- Raw source data is kept in `data/raw/`.
-- The local Python environment is managed in `customerenv/`.
-- Environment values are read from `.env` through `src/config.py`.
+## 2. Sales Forecasting
 
-## Run and Review
+A complete statistical time series forecasting pipeline was developed using weekly revenue.
 
-1. Load the database and generate the analytical views using the SQL scripts in `database/`.
-2. Open the notebooks in `notebooks/` to review profiling, feature engineering, and segmentation.
-3. Review the final business interpretation in `reports/customer_segmentation_business_interpretation.md`.
+The workflow includes:
 
-## Purpose
+- Weekly revenue aggregation
+- Time series decomposition (STL)
+- Trend & seasonality analysis
+- Stationarity testing (ADF & KPSS)
+- Baseline forecasting
+  - Naïve Forecast
+  - Moving Average
+- SARIMA model selection using AIC/BIC
+- Forecast evaluation
+- Residual diagnostics
 
-This repository is structured to be easy to follow for future reviewers. Each folder has a clear responsibility: raw data in one place, SQL logic in one place, notebooks in one place, saved models in one place, and written insights in one place.
+Final forecasting model:
+
+```text
+SARIMA (1,1,2)
+```
+
+Forecast accuracy:
+
+| Model | MAE | RMSE | MAPE |
+|------|---------:|---------:|------:|
+| Naïve Forecast | 46,751 | 58,303 | 22.99% |
+| Moving Average | 46,143 | **55,875** | 21.86% |
+| **SARIMA (1,1,2)** | **45,672** | 55,942 | **21.79%** |
+
+---
+
+## 3. Archived Customer Churn Prediction
+
+Customer churn prediction was investigated using multiple feature engineering approaches.
+
+Two different methodologies were explored:
+
+- Recency-based churn labeling
+- Time-based cutoff with future observation window
+
+Due to the characteristics of the Olist dataset, almost all customers make only a single purchase and very few customers return within the prediction window. Consequently, the dataset is not suitable for building a meaningful churn prediction model.
+
+Rather than forcing an unrealistic predictive model, the entire experiment has been preserved inside `notebooks/archives/customer_churn_ML/` together with detailed documentation explaining the dataset limitations and reasons for discontinuing the approach.
+
+---
+
+# Key Deliverables
+
+- PostgreSQL database scripts and analytical views
+- SQL-based exploratory analysis
+- Python feature engineering pipeline
+- Customer segmentation model
+- Statistical sales forecasting model
+- Business interpretation reports
+- Archived churn prediction research
+- Reusable utility modules
+
+---
+
+# Technologies Used
+
+### Database
+
+- PostgreSQL
+
+### Programming
+
+- Python
+
+### Data Analysis
+
+- Pandas
+- NumPy
+
+### Visualization
+
+- Matplotlib
+- Seaborn
+
+### Machine Learning
+
+- Scikit-learn
+- K-Means Clustering
+
+### Time Series Forecasting
+
+- Statsmodels (SARIMA)
+
+### Development
+
+- Jupyter Notebook
+
+---
+
+# Purpose
+
+This repository demonstrates an end-to-end analytics workflow using a real-world e-commerce dataset.
+
+The project emphasizes not only predictive modeling but also proper database design, feature engineering, statistical analysis, business interpretation, and transparent documentation of experimental work.
+
+All completed modules are fully reproducible, while unsuccessful research directions have been intentionally preserved and documented to demonstrate analytical rigor rather than selectively reporting only successful results.
